@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 
 public class FusrodahCommand implements CommandExecutor {
     private Player player;
-    @SuppressWarnings("unused")
     private final godPowers plugin;
 
     public FusrodahCommand(godPowers instance) {
@@ -27,7 +26,12 @@ public class FusrodahCommand implements CommandExecutor {
                 if (args.length > 0) {
                     player.sendMessage(ChatColor.RED + StringHandler.FUSRODAH_SYNTAX);
                 } else {
-                    ItemStack i = player.getItemInHand();
+                	if (plugin.isDragonborn.contains(player.getUniqueId())) {
+                		plugin.isDragonborn.remove(player.getUniqueId());
+                	} else {
+                		plugin.isDragonborn.add(player.getUniqueId());
+                	}
+                    ItemStack i = player.getInventory().getItemInMainHand();
                     if (i != null && i.getType() != Material.AIR) {
                         player.sendMessage(ChatColor.BLUE + StringHandler.FUSRODAH_FUSRODAH);
                         i.addUnsafeEnchantment(Enchantment.KNOCKBACK, 10);

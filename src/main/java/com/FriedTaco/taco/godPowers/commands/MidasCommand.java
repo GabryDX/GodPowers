@@ -2,6 +2,8 @@ package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
+import com.FriedTaco.taco.godPowers.util.SuperpowersUtils;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -12,7 +14,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class MidasCommand implements CommandExecutor {
-    private final godPowers plugin;
+	private final godPowers plugin;
 
     public MidasCommand(godPowers instance) {
         plugin = instance;
@@ -22,7 +24,17 @@ public class MidasCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             if (player.hasPermission("godpowers.midas")) {
-                if (args.length == 0) {
+            	if (args.length == 1) {
+            		Player player2 = plugin.getServer().getPlayer(args[0]);
+            		if (player2 != null) {
+						player.sendMessage(ChatColor.BLUE + StringHandler.MIDAS_PLAYER2 + " " + player2.getDisplayName());
+						player2.sendMessage(ChatColor.BLUE + StringHandler.MIDAS_MIDAS);
+						goldenReplace(player2);
+	                    goldenBless(player2);
+					} else {
+						player.sendMessage(ChatColor.RED + StringHandler.MIDAS_SYNTAX);
+					}
+            	} else if (args.length == 0) {
                     goldenReplace(player);
                     goldenBless(player);
                     player.sendMessage(ChatColor.BLUE + StringHandler.MIDAS_MIDAS);

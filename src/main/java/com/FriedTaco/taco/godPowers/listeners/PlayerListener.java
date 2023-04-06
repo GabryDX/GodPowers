@@ -6,6 +6,8 @@ import com.FriedTaco.taco.godPowers.util.Jesus;
 import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
 import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
+import com.FriedTaco.taco.godPowers.util.SuperpowersUtils;
+
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -325,25 +327,42 @@ public class PlayerListener implements Listener {
     public void onPlayerAnimation(PlayerAnimationEvent event) {
         if (event.getAnimationType().equals(PlayerAnimationType.ARM_SWING)) {
             Player p = event.getPlayer();
-            World w = p.getWorld();
-            if (plugin.isZeus.contains(p.getUniqueId())) {
-                w.strikeLightning((p.getTargetBlock(null, 100).getLocation())); // p.getTargetBlock is a Magic Value!
+            
+            if (plugin.isZeus.containsKey(p.getUniqueId())) {
+            	if (plugin.isZeus.get(p.getUniqueId()) == 2) {
+            		SuperpowersUtils.getInstance().zeusEvil(p);
+            	} else {
+            		SuperpowersUtils.getInstance().zeus(p);
+            	}
             }
-            if (plugin.isVulcan.contains(p.getUniqueId())) {
-                Fireball f = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation().add(event.getPlayer().getLocation().getDirection().normalize().multiply(3).toLocation(event.getPlayer().getWorld(),
-                        event.getPlayer().getLocation().getYaw(), event.getPlayer().getLocation().getPitch())).add(0, 1D, 0), Fireball.class); // Wow this long
-                f.setShooter(p);
-            }
-        }
+            
+			if (plugin.isVulcan.contains(p.getUniqueId())) {
+				SuperpowersUtils.getInstance().vulcan(p);
+			}
+            
+            if (plugin.isKamikaze.contains(p.getUniqueId())) {
+            	SuperpowersUtils.getInstance().kamikaze(p);
+			}
+
+			if (plugin.isDragonborn.contains(p.getUniqueId())) {
+				SuperpowersUtils.getInstance().fusRoDah(p, plugin);
+			}
+			
+			if (plugin.isCallOfValor.contains(p.getUniqueId())) {
+				SuperpowersUtils.getInstance().spawnHero(p, plugin);
+			}
+			
+		}
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
-        if (plugin.godTools && event.getPlayer().hasPermission("godpowers.godtools")) {
+    	Player p = event.getPlayer();
+        
+        if (plugin.godTools && p.hasPermission("godpowers.godtools")) {
             if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
                 ItemStack i = event.getItem();
                 Block b = event.getClickedBlock();
-                Player p = event.getPlayer();
                 if (i != null) {
                     if (i.getType() == Material.GOLD_SPADE && plugin.shovelDrops.contains(b.getType())) {
                         mine(p, b, i);
@@ -355,7 +374,11 @@ public class PlayerListener implements Listener {
                 }
             }
         }
-    }
+        
+        if (plugin.encage.containsKey(p.getUniqueId())) {
+			SuperpowersUtils.getInstance().encage(p, plugin.encage.get(p.getUniqueId()));
+		}
+	}
 
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {

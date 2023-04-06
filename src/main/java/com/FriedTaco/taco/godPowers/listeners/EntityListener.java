@@ -15,9 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.UUID;
 
 public class EntityListener implements Listener {
@@ -53,7 +51,7 @@ public class EntityListener implements Listener {
             EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
             if (e.getDamager() instanceof Player) {
                 Player p = (Player) e.getDamager();
-                ItemStack i = p.getItemInHand();
+                ItemStack i = p.getInventory().getItemInMainHand();
                 if (i.containsEnchantment(Enchantment.KNOCKBACK) && i.getEnchantmentLevel(Enchantment.KNOCKBACK) == 10) {
                     if (!(e.getEntity() instanceof Player)) {
                         Vector v = p.getEyeLocation().getDirection();
@@ -86,7 +84,7 @@ public class EntityListener implements Listener {
             } else if (plugin.medusaDropHead) {
                 PlayerDeathEvent e = (PlayerDeathEvent) event;
                 if (plugin.isMedusa.contains(UUID) && player.getKiller() != null) { // If dead player was a medusa player
-                    Material itemType = player.getKiller().getItemInHand().getType();
+                    Material itemType = player.getKiller().getInventory().getItemInMainHand().getType();
                     if (itemType == Material.WOOD_SWORD || itemType == Material.STONE_SWORD
                             || itemType == Material.DIAMOND_SWORD || itemType == Material.GOLD_SWORD || itemType ==  Material.IRON_SWORD) {
                         ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);

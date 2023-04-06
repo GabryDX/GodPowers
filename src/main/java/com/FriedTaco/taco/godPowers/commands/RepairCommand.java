@@ -14,7 +14,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class RepairCommand implements CommandExecutor {
-    private final godPowers plugin;
+    @SuppressWarnings("unused")
+	private final godPowers plugin;
 
     public RepairCommand(godPowers instance) {
         plugin = instance;
@@ -29,15 +30,15 @@ public class RepairCommand implements CommandExecutor {
                         Material poss[] = {Material.WOOD_AXE, Material.WOOD_SPADE, Material.WOOD_SWORD, Material.WOOD_PICKAXE, Material.STONE_AXE, Material.STONE_SPADE, Material.STONE_SWORD, Material.STONE_PICKAXE, Material.DIAMOND_AXE, Material.DIAMOND_SPADE, Material.DIAMOND_SWORD, Material.DIAMOND_PICKAXE, Material.GOLD_AXE, Material.GOLD_SPADE, Material.GOLD_SWORD, Material.GOLD_PICKAXE, Material.BOW, Material.SHEARS, Material.LEATHER_BOOTS, Material.LEATHER_CHESTPLATE, Material.LEATHER_HELMET, Material.LEATHER_LEGGINGS, Material.IRON_BOOTS, Material.IRON_CHESTPLATE, Material.IRON_HELMET, Material.IRON_LEGGINGS, Material.CHAINMAIL_BOOTS, Material.CHAINMAIL_CHESTPLATE, Material.CHAINMAIL_HELMET, Material.CHAINMAIL_LEGGINGS, Material.DIAMOND_BOOTS, Material.DIAMOND_CHESTPLATE, Material.DIAMOND_HELMET, Material.DIAMOND_LEGGINGS, Material.FISHING_ROD};
                         ArrayList<Material> possible = new ArrayList<Material>();
                         Collections.addAll(possible, poss);
-                        ItemStack i = player.getItemInHand();
+                        ItemStack i = player.getInventory().getItemInMainHand();
                         if (i != null && possible.contains(i.getType())) {
-                            if (player.getItemInHand().getDurability() == 0) {
+                            if (i.getDurability() == 0) {
                                 player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_NOTBROKEN);
                             } else {
-                                player.getItemInHand().setDurability((short) 0);
+                                player.getInventory().getItemInMainHand().setDurability((short) 0);
                                 player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_REPAIRED);
                             }
-                        } else if (player.getItemInHand().getType() == Material.AIR) {
+                        } else if (i.getType() == Material.AIR) {
                             player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_NOTHING);
                         } else {
                             player.sendMessage(ChatColor.RED + StringHandler.REPAIR_NOTALLOWED);

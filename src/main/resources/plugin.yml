@@ -2,11 +2,17 @@ name: godPowers
 main: com.FriedTaco.taco.godPowers.godPowers
 version: ${project.version}
 description: ${git.commit.id.abbrev}
+load: POSTWORLD
 author: Swift
+authors: [GabryDX]
+website: https://github.com/GabryDX/GodPowers
 commands:
     bless:
         description: Enchants all items in your inventory!
         usage: /bless
+    callofvalor:
+        description: Summons a hero of Sovngarde!
+        usage: /callofvalor
     demigod:
         description: Reduces all damage you take!
         usage: /demigod
@@ -16,6 +22,9 @@ commands:
     dupe:
         description: Dupes the item you're holding!
         usage: /dupe <amount>
+    encage:
+        description: Encage a player or an entity!
+        usage: /encage <amount>
     fusrodah:
         description: Puts knockback level 10 on the item in your hand!
         usage: /fusrodah
@@ -52,6 +61,9 @@ commands:
     jesus:
         description: Grants you the ability to walk on water and lava!
         usage: /jesus
+    kamikaze:
+        description: Explode yourself like an atomic bomb!
+        usage: /kamikaze
     maim:
         description: Nearly beat a specified player to death!
         usage: /maim
@@ -93,9 +105,11 @@ permissions:
         description: Gives access to all godpowers commands.
         children:
             godpowers.bless: true
+            godpowers.callofvalor: true
             godpowers.demigod: true
             godpowers.die: true
             godpowers.dupe: true
+            godpowers.encage: true
             godpowers.fusrodah: true
             godpowers.gaia: true
             godpowers.godmode: true
@@ -106,6 +120,7 @@ permissions:
             godpowers.hermes: true
             godpowers.inferno: true
             godpowers.jesus: true
+            godpowers.kamikaze: true
             godpowers.maim: true
             godpowers.medusa: true
             godpowers.medusa.usehead: true
@@ -120,6 +135,9 @@ permissions:
     godpowers.bless:
         description: Gives permission to relevant command.
         default: op
+    godpowers.callofvalor:
+        description: Gives permission to relevant command.
+        default: op
     godpowers.demigod:
         description: Gives permission to relevant command.
         default: op
@@ -127,6 +145,9 @@ permissions:
         description: Gives permission to relevant command.
         default: op
     godpowers.dupe:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.encage:
         description: Gives permission to relevant command.
         default: op
     godpowers.fusrodah:
@@ -157,6 +178,9 @@ permissions:
         description: Gives permission to relevant command.
         default: op
     godpowers.jesus:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.kamikaze:
         description: Gives permission to relevant command.
         default: op
     godpowers.maim:

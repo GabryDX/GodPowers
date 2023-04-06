@@ -20,16 +20,32 @@ public class ZeusCommand implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.zeus")) {
-                if (args.length > 0) {
-                    player.sendMessage(ChatColor.RED + StringHandler.ZEUS_SYNTAX);
-                } else {
-                    if (plugin.isZeus.contains(player.getUniqueId())) {
-                        player.sendMessage(ChatColor.BLUE + StringHandler.ZEUS_REMOVE);
+                if (args.length == 1) {
+                	try {
+                		int zeusType = Integer.parseInt(args[0]);
+                		if (zeusType == 2) {
+                			player.sendMessage(ChatColor.BLUE + StringHandler.ZEUSEVIL_ADD);
+                		} else {
+                			player.sendMessage(ChatColor.BLUE + StringHandler.ZEUS_ADD);
+                		}
+                        plugin.isZeus.put(player.getUniqueId(), zeusType);
+                	} catch (Exception e) {
+                		player.sendMessage(ChatColor.RED + StringHandler.ZEUS_SYNTAX);
+					}
+                } else if (args.length == 0){
+                    if (plugin.isZeus.containsKey(player.getUniqueId())) {
+                    	if (plugin.isZeus.get(player.getUniqueId()) == 2) {
+                    		player.sendMessage(ChatColor.BLUE + StringHandler.ZEUSEVIL_REMOVE);
+                    	} else {
+                    		player.sendMessage(ChatColor.BLUE + StringHandler.ZEUS_REMOVE);
+                    	}
                         plugin.isZeus.remove(player.getUniqueId());
                     } else {
                         player.sendMessage(ChatColor.BLUE + StringHandler.ZEUS_ADD);
-                        plugin.isZeus.add(player.getUniqueId());
+                        plugin.isZeus.put(player.getUniqueId(), 1);
                     }
+                } else {
+                	player.sendMessage(ChatColor.RED + StringHandler.ZEUS_SYNTAX);
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);

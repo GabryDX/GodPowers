@@ -22,12 +22,12 @@ public class DupeCommand implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.dupe")) {
+            	Inventory inv = player.getInventory();
+                ItemStack item = player.getInventory().getItemInMainHand();
                 if (args.length == 0) {
                     int amount = 64;
-                    if (player.getItemInHand().getType() != Material.AIR) {
+                    if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
                         try {
-                            Inventory inv = player.getInventory();
-                            ItemStack item = player.getItemInHand();
                             ItemStack newitem = new ItemStack(item.getType(), amount, (short) item.getDurability());
                             newitem.setData(item.getData());
                             newitem.setItemMeta(item.getItemMeta());
@@ -43,14 +43,12 @@ public class DupeCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
                 } else if (args.length == 1) {
-                    if (player.getItemInHand().getType() != Material.AIR) {
+                    if (player.getInventory().getItemInMainHand().getType() != Material.AIR) {
                         player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
                         int amount = Integer.parseInt(args[0]);
                         if (amount == 0) {
                             amount = 64;
                         }
-                        Inventory inv = player.getInventory();
-                        ItemStack item = player.getItemInHand();
                         ItemStack newitem = new ItemStack(item.getType(), amount, (short) item.getDurability());
                         newitem.setData(item.getData());
                         newitem.setItemMeta(item.getItemMeta());

@@ -45,12 +45,16 @@ public class GodPowersCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.BLUE + StringHandler.GODPOWERS_COMMAND_LIST_HEADER);
                         if (player.hasPermission("godpowers.bless") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/bless " + ChatColor.GREEN + StringHandler.LIST_BLESS_DESCRIPTION);
+                        if (player.hasPermission("godpowers.callofvalor") | player.isOp())
+                            player.sendMessage(ChatColor.RED + "/callofvalor " + ChatColor.GREEN + StringHandler.LIST_CALLOFVALOR_DESCRIPTION);
                         if (player.hasPermission("godpowers.demigod") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/demigod " + ChatColor.GREEN + StringHandler.LIST_DEMIGOD_DESCRIPTION);
                         if (player.hasPermission("godpowers.die") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/die " + ChatColor.GREEN + StringHandler.LIST_DIE_DESCRIPTION);
                         if (player.hasPermission("godpowers.dupe") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/dupe " + ChatColor.GREEN + StringHandler.LIST_DUPE_DESCRIPTION);
+                        if (player.hasPermission("godpowers.encage") | player.isOp())
+                            player.sendMessage(ChatColor.RED + "/encage " + ChatColor.GREEN + StringHandler.LIST_ENCAGE_DESCRIPTION);
                         if (player.hasPermission("godpowers.fusrodah") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/fusrodah " + ChatColor.GREEN + StringHandler.LIST_FUSRODAH_DESCRIPTION);
                         if (player.hasPermission("godpowers.gaia") | player.isOp())
@@ -68,6 +72,8 @@ public class GodPowersCommand implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "/inferno " + ChatColor.GREEN + StringHandler.LIST_INFERNO_DESCRIPTION);
                         if (player.hasPermission("godpowers.jesus") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/jesus " + ChatColor.GREEN + StringHandler.LIST_JESUS_DESCRIPTION);
+                        if (player.hasPermission("godpowers.kamikaze") | player.isOp())
+                            player.sendMessage(ChatColor.RED + "/kamikaze " + ChatColor.GREEN + StringHandler.LIST_KAMIKAZE_DESCRIPTION);
                         if (player.hasPermission("godpowers.maim") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/maim " + ChatColor.GREEN + StringHandler.LIST_MAIM_DESCRIPTION);
                         if (player.hasPermission("godpowers.medusa") | player.isOp())
@@ -86,6 +92,8 @@ public class GodPowersCommand implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "/vulcan " + ChatColor.GREEN + StringHandler.LIST_VULCAN_DESCRIPTION);
                         if (player.hasPermission("godpowers.zeus") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/zeus " + ChatColor.GREEN + StringHandler.LIST_ZEUS_DESCRIPTION);
+                        if (player.hasPermission("godpowers.zeusevil") | player.isOp())
+                            player.sendMessage(ChatColor.RED + "/zeusevil " + ChatColor.GREEN + StringHandler.LIST_ZEUSEVIL_DESCRIPTION);
                     } else {
                         player.sendMessage(StringHandler.GODPOWERS_NOPERMISSION);
                     }
